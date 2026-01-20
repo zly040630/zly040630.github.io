@@ -8,7 +8,7 @@
     <link href="/2026/01/20/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB-Demo%EF%BC%88CNN-ONNX-js%EF%BC%89/"/>
     <url>/2026/01/20/%E6%89%8B%E5%86%99%E6%95%B0%E5%AD%97%E8%AF%86%E5%88%AB-Demo%EF%BC%88CNN-ONNX-js%EF%BC%89/</url>
     
-    <content type="html"><![CDATA[<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>这是我实现的一个 <strong>手写数字识别 Demo</strong>：</p><ul><li>使用 <strong>自己训练的 CNN 模型</strong></li><li>通过 <strong>ONNX</strong> 导出模型</li><li>在浏览器端使用 <strong>onnxruntime-web</strong> 进行推理</li><li>支持在网页上直接手写数字并实时预测结果</li></ul><hr><h2 id="在线体验"><a href="#在线体验" class="headerlink" title="在线体验"></a>在线体验</h2><p>👉 <strong>点击这里体验 Demo：</strong><br><a href="/mnist_page/index.html" target="_blank"><br>手写数字识别 Demo（点击打开）<br></a></p><hr><h2 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h2><ul><li>输入：Canvas 手写数字（28×28 灰度）</li><li>模型：CNN（PyTorch → ONNX）</li><li>推理：onnxruntime-web（纯前端，无后端）</li><li>部署：GitHub Pages + Hexo</li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="项目简介"><a href="#项目简介" class="headerlink" title="项目简介"></a>项目简介</h2><p>这是我实现的一个 <strong>手写数字识别 Demo</strong>：</p><ul><li>使用 <strong>自己训练的手写 CNN 模型的参数</strong></li><li>通过 <strong>ONNX</strong> 导出模型</li><li>在浏览器端使用 <strong>onnxruntime-web</strong> 进行推理</li><li>支持在网页上直接手写数字并实时预测结果</li></ul><hr><h2 id="在线体验"><a href="#在线体验" class="headerlink" title="在线体验"></a>在线体验</h2><p>👉 <strong>点击这里体验 Demo：</strong><br><a href="/mnist_page/index.html" target="_blank"><br>手写数字识别 Demo（点击打开）<br></a></p><hr><h2 id="技术细节"><a href="#技术细节" class="headerlink" title="技术细节"></a>技术细节</h2><ul><li>输入：Canvas 手写数字（28×28 灰度）</li><li>模型：CNN（PyTorch → ONNX）</li><li>推理：onnxruntime-web（纯前端，无后端）</li><li>部署：GitHub Pages + Hexo</li></ul>]]></content>
     
     
     <categories>
@@ -35,13 +35,31 @@
   
   
   <entry>
-    <title>第一篇文章</title>
-    <link href="/2025/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
-    <url>/2025/11/29/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
+    <title>基于 ONNX 的浏览器端手写数字识别推理</title>
+    <link href="/2026/01/20/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/"/>
+    <url>/2026/01/20/%E7%AC%AC%E4%B8%80%E7%AF%87%E6%96%87%E7%AB%A0/</url>
     
-    <content type="html"><![CDATA[<p>111<br>222<br>333</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="1-标准网页包含哪些文件？"><a href="#1-标准网页包含哪些文件？" class="headerlink" title="1. 标准网页包含哪些文件？"></a>1. 标准网页包含哪些文件？</h2><p>一个标准的网页包含</p><ul><li><code>index.html</code> ← 结构（HTML）</li><li><code>style.css</code>  ← 样式（CSS）</li><li><code>script.js</code>  ← 逻辑（JavaScript）</li></ul><h2 id="2-只有前端会发生什么？"><a href="#2-只有前端会发生什么？" class="headerlink" title="2. 只有前端会发生什么？"></a>2. 只有前端会发生什么？</h2><p><strong>只有前端：页面能跑，但“不会算”——只能展示、交互、做非常轻的逻辑</strong></p><ul><li>不能加载训练好的模型  </li><li>不能复用你训练好的权重  </li><li>推理只能靠手写 js 算</li></ul><h2 id="3-前后端协同-vs-前端-ONNX"><a href="#3-前后端协同-vs-前端-ONNX" class="headerlink" title="3. 前后端协同 vs 前端 + ONNX"></a>3. 前后端协同 vs 前端 + ONNX</h2><p>在实际工程中，前端与后端协同的架构更适合构建完整、可扩展的 Web 系统，模型推理通常由后端统一完成，以保证性能、可控性和模型安全。<br>而在教学演示或轻量模型场景下，采用前端结合 ONNX 进行浏览器端推理，可以显著降低系统复杂度，提升部署和理解的便利性。</p><h2 id="4-ONNX-是什么？"><a href="#4-ONNX-是什么？" class="headerlink" title="4. ONNX 是什么？"></a>4. ONNX 是什么？</h2><p>ONNX 的 全称是 Open Neural Network Exchange，翻译为中文就是开放神经网络交换格式。</p><p>ONNX 是“模型的通用语言 &#x2F; 中间格式”，让不同框架训练的模型可以在不同平台上运行。</p><p>.onnx &#x3D; 神经网络的“说明书 + 参数”</p><p>里面保存了：</p><ul><li>网络结构<ul><li>用了哪些层（卷积、池化、全连接、激活函数等）</li><li>每一层的配置参数</li><li>结构图</li></ul></li><li>权重参数（W、b）</li><li>计算图</li></ul><p>网络结构中的结构图描述模型的层级组织形式，计算图描述模型在一次前向与反向传播中所有算子之间的精确计算依赖关系，计算图把结构图中的细节展开。</p><h2 id="5-将手写-CNN-转成-ONNX-模型：关键问题"><a href="#5-将手写-CNN-转成-ONNX-模型：关键问题" class="headerlink" title="5. 将手写 CNN 转成 ONNX 模型：关键问题"></a>5. 将手写 CNN 转成 ONNX 模型：关键问题</h2><h3 id="5-1-ONNX-为什么无法识别手写-CNN？"><a href="#5-1-ONNX-为什么无法识别手写-CNN？" class="headerlink" title="5.1 ONNX 为什么无法识别手写 CNN？"></a>5.1 ONNX 为什么无法识别手写 CNN？</h3><p>ONNX 的核心是基于标准的算子库来构建计算图，手写的CNN算子不在这个库中，所以无法直接转成ONNX模型。因此需要把手写的CNN转换成自己熟悉的框架（如PyTorch），再导出为ONNX格式，但是手写的CNN模型训练出来的的参数还是可以用的。</p><h3 id="5-2-PyTorch-怎么导出-ONNX？"><a href="#5-2-PyTorch-怎么导出-ONNX？" class="headerlink" title="5.2 PyTorch 怎么导出 ONNX？"></a>5.2 PyTorch 怎么导出 ONNX？</h3><p>代码如下：</p><p><code>torch.onnx.export(model, dummy_input, onnx_path, verbose=True)</code></p><ul><li><code>model</code> 是 pytorch 模型  </li><li><code>dummy_input</code> 是一个输入样本  </li><li><code>onnx_path</code> 是输出的 onnx 模型路径</li><li><code>verbose</code> 是一个布尔值，用于控制是否打印详细的转换信息。</li></ul><p>在程序里一定要把模型设置为评估模式再转换：<code>model.eval()</code></p><h3 id="5-3-为什么-ONNX-js-跑不了，但-onnxruntime-web-可以？"><a href="#5-3-为什么-ONNX-js-跑不了，但-onnxruntime-web-可以？" class="headerlink" title="5.3 为什么 ONNX.js 跑不了，但 onnxruntime-web 可以？"></a>5.3 为什么 ONNX.js 跑不了，但 onnxruntime-web 可以？</h3><p>ONNX.js 无法直接加载 PyTorch 导出的 ONNX 模型，并不是因为模型使用了非标准算子，而是因为 ONNX.js 对 ONNX 标准算子的支持非常有限，且项目已停止维护。<br>相比之下，ONNX Runtime Web 提供了基于 WASM &#x2F; WebGPU 的完整推理后端，能够正确执行由 PyTorch 导出的 ONNX 计算图，因此在实际工程中应优先使用 onnxruntime-web。</p><h3 id="5-4-网页输入格式与模型输入不一致"><a href="#5-4-网页输入格式与模型输入不一致" class="headerlink" title="5.4 网页输入格式与模型输入不一致"></a>5.4 网页输入格式与模型输入不一致</h3><p>网页里面画出来的数字与模型需要的输入格式不同，网页里面画的数字是280x280的RGBA图像，而模型需要的输入是1×1x28x28的张量。<br>两种方法转换：<br>1.是在前端直接处理<br>2.是在后端处理，将图像维度调成(1, 1, 28, 28)。</p><p>在教学演示和轻量模型场景下，将输入预处理放在前端实现，可以显著降低系统复杂度，便于理解模型输入与推理流程；<br>而在实际工程中，通常会将图像预处理与模型推理统一放在后端，以保证与训练阶段预处理的一致性，并提升系统的可维护性与安全性。</p><h2 id="6-我的导出代码"><a href="#6-我的导出代码" class="headerlink" title="6. 我的导出代码"></a>6. 我的导出代码</h2><details><summary><b>点击展开：PyTorch 载入手写 CNN 参数并导出 ONNX</b></summary><pre><code class="language-python">import numpy as npimport torchimport torch.nn as nnimport torch.nn.functional as Fimport osBASE_DIR = os.path.dirname(os.path.abspath(__file__))onnx_path = os.path.join(BASE_DIR, &quot;cnn.onnx&quot;)class CNN_Torch(nn.Module):    def __init__(self, state):        super().__init__()        # 卷积层参数        self.W1 = nn.Parameter(torch.from_numpy(state[&quot;conv_K1&quot;]).float())        self.B1 = nn.Parameter(torch.from_numpy(state[&quot;conv_B1&quot;]).float())        self.W2 = nn.Parameter(torch.from_numpy(state[&quot;conv_K2&quot;]).float())        self.B2 = nn.Parameter(torch.from_numpy(state[&quot;conv_B2&quot;]).float())        self.fc1 = nn.Linear(216, 64)        self.fc2 = nn.Linear(64, 10)        # 线性层参数        self.fc1.weight.data = torch.from_numpy(state[&quot;nn_W1&quot;]).float()        self.fc1.bias.data = torch.from_numpy(state[&quot;nn_b1&quot;]).float().squeeze()        self.fc2.weight.data = torch.from_numpy(state[&quot;nn_W2&quot;]).float()        self.fc2.bias.data = torch.from_numpy(state[&quot;nn_b2&quot;]).float().squeeze()    def forward(self, x):        # x: (N,1,28,28)        y = F.conv2d(x, self.W1, bias=self.B1, stride=1)        y = F.max_pool2d(y, 2, 2)             # (N,3,13,13)        y = F.conv2d(y, self.W2, bias=self.B2, stride=1)        y = F.max_pool2d(y, 2, 2)             # (N,6,6,6)        y = y.view(y.size(0), -1)             # (N,216)        y = F.leaky_relu(self.fc1(y), negative_slope=0.05)        y = F.softmax(self.fc2(y), dim=1)        return ydef main():    # 你手写模型保存的 npz    state_path = os.path.join(BASE_DIR, &quot;cnn_mnist_10.npz&quot;)    state = np.load(state_path)    model = CNN_Torch(state)    model.eval()    dummy_input = torch.zeros(1, 1, 28, 28)    torch.onnx.export(model, dummy_input, onnx_path, verbose=True)if __name__ == &quot;__main__&quot;:    main()</code></pre>]]></content>
     
     
+    <categories>
+      
+      <category>项目介绍</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>深度学习</tag>
+      
+      <tag>CNN</tag>
+      
+      <tag>ONNX</tag>
+      
+      <tag>前端</tag>
+      
+    </tags>
     
   </entry>
   
