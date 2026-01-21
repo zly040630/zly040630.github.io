@@ -1,0 +1,219 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />                <!-- 导入style.css文件 -->
+  </head>
+
+  <body>
+    <div class="card elevation">
+      <!-- 画数字的地方 -->
+      <canvas
+        class="canvas elevation"
+        id="canvas"
+        width="280"
+        height="280"
+      ></canvas>
+
+      <div class="button" id="clear-button">CLEAR</div>     <!-- clear 按钮 -->
+
+      <div class="predictions-multi">
+
+        <!-- 100张训练 -->
+        <div class="pred-block">
+          <div class="pred-title">100 samples</div>
+          <div class="predictions" id="pred-100">
+            <!-- 注意：id 变成 prediction-100-0 ... prediction-100-9 -->
+            <div class="prediction-col" id="prediction-100-0">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">0</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-1">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">1</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-2">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">2</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-3">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">3</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-4">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">4</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-5">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">5</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-6">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">6</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-7">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">7</div>
+            </div>
+            <div class="prediction-col" id="prediction-100-8">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">8</div>
+            </div>
+            <!-- ...一直复制到 9 -->
+            <div class="prediction-col" id="prediction-100-9">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">9</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 600张训练 -->
+        <div class="pred-block">
+          <div class="pred-title">600 samples</div>
+          <div class="predictions" id="pred-600">
+            <div class="prediction-col" id="prediction-600-0">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">0</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-1">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">1</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-2">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">2</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-3">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">3</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-4">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">4</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-5">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">5</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-6">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">6</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-7">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">7</div>
+            </div>
+            <div class="prediction-col" id="prediction-600-8">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">8</div>
+            </div>
+            <!-- ...一直复制到 9 -->
+            <div class="prediction-col" id="prediction-600-9">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">9</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6000张训练 -->
+        <div class="pred-block">
+          <div class="pred-title">6000 samples</div>
+          <div class="predictions" id="pred-6000">
+            <div class="prediction-col" id="prediction-6000-0">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">0</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-1">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">1</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-2">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">2</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-3">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">3</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-4">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">4</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-5">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">5</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-6">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">6</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-7">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">7</div>
+            </div>
+            <div class="prediction-col" id="prediction-6000-8">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">8</div>
+            </div>
+            <!-- ...一直复制到 9 -->
+            <div class="prediction-col" id="prediction-6000-9">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">9</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 60000张训练 -->
+        <div class="pred-block">
+          <div class="pred-title">60000 samples</div>
+          <div class="predictions" id="pred-60000">
+            <div class="prediction-col" id="prediction-60000-0">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">0</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-1">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">1</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-2">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">2</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-3">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">3</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-4">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">4</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-5">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">5</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-6">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">6</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-7">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">7</div>
+            </div>
+            <div class="prediction-col" id="prediction-60000-8">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">8</div>
+            </div>
+            <!-- ...一直复制到 9 -->
+            <div class="prediction-col" id="prediction-60000-9">
+              <div class="prediction-bar-container"><div class="prediction-bar"></div></div>
+              <div class="prediction-number">9</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/onnxjs/dist/onnx.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>      <!-- 导入onnxruntime-web库 -->
+    <script src="script.js"></script>                                                         <!-- 导入script.js文件 -->
+  </body>
+</html>
