@@ -137,6 +137,7 @@ async function updatePredictions() {
 
   const inputTensor = getInputTensor();
 
+  // m是 MODELS 中的{ key: "100",   title: "100 samples",   path: "./cnn.onnx", prob: true,  session: null }
   for (const m of MODELS) {
     const session = m.session;
 
